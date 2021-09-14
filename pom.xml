@@ -10,7 +10,6 @@
     <name>spring-cloud-demo3</name>
     <packaging>pom</packaging>
 
-
     <modules>
         <module>discovery</module>
         <module>rest-1</module>
