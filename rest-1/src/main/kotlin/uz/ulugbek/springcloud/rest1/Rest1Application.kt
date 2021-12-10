@@ -25,16 +25,16 @@ fun main(args: Array<String>) {
 }
 
 @RestController
-class MyRestController(val restTemplate: RestTemplate) {
+class MyRestController(val demo2Service: Demo2Service) {
 
     @GetMapping
     fun hello() : String {
-        return "Hello from demo 1 ${restTemplate.getForObject("http://rest2", String::class.java)}"
+        return "Hello from demo 1 ${demo2Service.hello()}"
     }
 
     @GetMapping("message")
     fun message(id: Long): MessageDto {
-        val responseFromRest2 = restTemplate.postForObject("http://rest2/message/${id}", null, MessageRest2Dto::class.java)
-        return MessageDto(responseFromRest2!!.id, responseFromRest2!!.message, Date().time)
+        val responseMessageRest2Dto = demo2Service.message(id)
+        return MessageDto(responseMessageRest2Dto!!.id, responseMessageRest2Dto!!.message, Date().time)
     }
 }
